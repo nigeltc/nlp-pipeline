@@ -1,6 +1,6 @@
+#! /usr/bin/env python
 """
-NLP-Pipeline - spaCy pipelines for NLP
-
+spaCy NLP pipeline
 """
 import pprint
 import spacy
@@ -16,7 +16,7 @@ nlp = spacy.load("en_core_web_sm")
 # currently: tok2vec, tagger, parser, attribute_ruler, lemmatizer, ner
 print(nlp.pipe_names)
 
-text = """Tesla’s third-quarter revenue fell short of Wall Street expectations on Wednesday, prompting its stock price to drop more than 4% after markets closed."""
+text = """Tesla’s third-quarter revenue fell short of Wall Street expectations on Wednesday, prompting its stock price to drop more than 4% after markets closed. Some experts don’t think the market slowdown, or the Twitter deal, will hurt Tesla’s position as a leader in the electric vehicle industry."""
 
 # Tokenization
 # note: doc is a generator for tokens
@@ -38,7 +38,7 @@ for t in doc:
 # VBG  Participle
 # JJ   Adjective
 for t in doc:
-    print(f"{t.text} -> {t.tag_}")
+    print(f"{t.text} -> {t.tag_} ({t.pos_})")
 
 # Syntactic Dependency
 for t in doc:
@@ -68,3 +68,8 @@ pprint.pprint(data)
 #header = data[0].keys()
 #rows =  [x.values() for x in data]
 #print(tabulate.tabulate(rows, header))
+
+# Sentences
+for i, sent in enumerate(doc.sents):
+    print(f"[{i}]", sent)
+
